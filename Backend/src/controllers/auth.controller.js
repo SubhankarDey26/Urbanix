@@ -4,7 +4,7 @@ import { config } from "../config/config.js";
 
 export const register = async (req, res) => {
   try {
-    const { fullname, email, contact, password, role } = req.body;
+    const { fullname, email, contact, password, isSeller } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -21,7 +21,7 @@ export const register = async (req, res) => {
       email,
       contact,
       password,
-      role,
+      role:isSeller?"seller":"buyer",
     });
 
     // Generate JWT token using config
